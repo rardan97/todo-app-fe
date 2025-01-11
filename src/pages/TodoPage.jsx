@@ -18,8 +18,6 @@ const TodoPage = () => {
     status:''
   });
 
-  // const [selectedOption, setSelectedOption] = useState("");
-
   const handleChange = (event) => {
     console.log("select :"+ event.target.value)
     setStatus(event.target.value);
@@ -60,20 +58,6 @@ const TodoPage = () => {
     setStatus('');
   }
 
-//   function getTodoById(todoId){
-//     console.log(todoId);
-    
-//     if(todoId){
-//         getValueById(todoId).then((response) => {
-//           setId(response.data.id);
-//           setTitle(response.data.title);
-//           setDescription(response.data.description);
-//           setStatus(response.data.status);
-//         }).catch(error => {
-//             console.error(error); 
-//         })
-//     }
-// }
 
 
 function openEditModal(todoId){
@@ -182,12 +166,7 @@ const getTodoStatus = (statusx) => {
   } else if (statusx == 2) {
     console.log("statusx hasil 2: "+statusx)
     return 'done'; // Green background (you can use bg-success instead of bg-warning)
-  } 
-  // else if (status === 'notStarted') {
-  //   return 'bg-warning'; // Yellow background
-  // } else if (status === 'failed') {
-  //   return 'bg-danger'; // Red background
-  // }
+  }
 };
 
 
