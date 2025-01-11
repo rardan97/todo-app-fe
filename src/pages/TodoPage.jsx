@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import HeaderComponents from '../components/HeaderComponents'
 import { createTodo, deleteTodo, getValueById, listTodo, updateTodo } from '../services/todoService';
 import { MdDelete } from "react-icons/md";
@@ -18,15 +18,14 @@ const TodoPage = () => {
     status:''
   });
 
+  useEffect(() => {
+    getListAllTodo();
+  }, []);
+
   const handleChange = (event) => {
     console.log("select :"+ event.target.value)
     setStatus(event.target.value);
   };
-
-  
-  useEffect(() => {
-    getListAllTodo();
-  }, []);
 
   function getListAllTodo(){
     listTodo().then((response) => {
@@ -76,20 +75,11 @@ function openEditModal(todoId){
   }
 }
 
-
-
-
 function editTodo(e){
     e.preventDefault();
-    
-
-    console.log("proccess");
-        // console.log(kategoriId);
     if(validateForm()){
-        console.log("proccess11");
         const todoData = {title, description, status}
         const todoIdParam = id;
-        console.log("proccess12 :" + id);
         updateTodo(todoIdParam, todoData).then((response) => {
             console.log(response.data);
             getListAllTodo();
@@ -134,11 +124,6 @@ function validateForm(){
       errorsCopy.status = '';
       
   }
-
-  console.log(valid);
-
-  console.log(errorsCopy);
-
     setErrors(errorsCopy);
     return valid;
 }
@@ -162,10 +147,10 @@ const getTodoStatus = (statusx) => {
   console.log("statusx : "+statusx)
   if (statusx == 1) {
     console.log("statusx hasil 1: "+statusx)
-    return 'in progress'; // Blue background
+    return 'in progress'; 
   } else if (statusx == 2) {
     console.log("statusx hasil 2: "+statusx)
-    return 'done'; // Green background (you can use bg-success instead of bg-warning)
+    return 'done'; 
   }
 };
 
@@ -190,7 +175,6 @@ const getTodoStatus = (statusx) => {
                                     <MdBookmarkAdd size={20}/> Add Todo 
                                     </button>
                                 </div>
-                                
                                 <table className="table ">
                                       <thead>
                                         <tr>
@@ -217,16 +201,7 @@ const getTodoStatus = (statusx) => {
                                         )
                                       }
                                       </tbody>
-                                    </table>
-
-                               
-                               
-                                    
-                               
-                                  
-                                
-                                
-                                
+                                  </table>
                             </div>
                             </div>
                         </div>
@@ -290,7 +265,6 @@ const getTodoStatus = (statusx) => {
                 <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" className="btn btn-primary" onClick={isEdit ? editTodo : saveTodo}>{isEdit ? 'Update' : 'Submit'}</button>
-                    {/* <button type="submit" className="btn btn-primary" onClick={editTodo}>Update</button> */}
                 </div>
                 </div>
             </div>
