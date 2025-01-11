@@ -1,0 +1,63 @@
+.header {
+    background-image: url('/bg.jpg');
+    background-size: cover; /* Ensures the image covers the entire header */
+    background-position: center; /* Centers the image */
+    height: 300px; /* Set a fixed height or any height you need */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white; /* Text color */
+    text-align: center;
+  }
+
+
+
+.my-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.my-table th,
+.my-table td {
+  padding: 12px 15px;
+  text-align: left; /* Align text to the left */
+  border: 1px solid #ddd;
+}
+
+.my-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.my-table td {
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .my-table {
+    border: none;
+  }
+
+  .my-table thead {
+    display: none; /* Hide headers on small screens */
+  }
+
+  .my-table, .my-table tbody, .my-table tr, .my-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .my-table td {
+    text-align: right;
+    padding-left: 50%; /* Creates the label for each data */
+    position: relative;
+  }
+
+  .my-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+  }
+}
